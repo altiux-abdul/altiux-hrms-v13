@@ -1,0 +1,107 @@
+query selectDirectors {
+  description: "Select all Directors"
+  statement:
+      SELECT org.altiux.hrms.Director
+}
+query selectEmployees {
+  description: "Select all Employees"
+  statement:
+      SELECT org.altiux.hrms.Employee
+}
+query selectCustomers {
+  description: "Select all Customers"
+  statement:
+      SELECT org.altiux.hrms.Customer
+}
+query selectManagers {
+  description: "Select all Managers"
+  statement:
+      SELECT org.altiux.hrms.Manager
+}
+query selectWallets {
+  description: "Select all wallets"
+  statement:
+      SELECT org.altiux.hrms.Wallet
+}
+query selectFundAccounts {
+  description: "Select all fund accounts"
+  statement:
+      SELECT org.altiux.hrms.Funds
+}
+
+query selectDocuments {
+  description: "Select all documents"
+  statement:
+      SELECT org.altiux.hrms.Document
+}
+
+query selectDocumentsByUserQry {
+  description: "Select all wallets"
+  statement:
+      SELECT org.altiux.hrms.Document
+      WHERE (owner == _$owner)
+}
+
+/**** complex query for hrms ****/
+query investmentByDirectorQry {
+  description: "Select all investment by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByDirector
+      WHERE ( director == _$director)
+}
+
+query investmentByAllDirectorQry {
+  description: "Select all investment by All manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByDirector
+}
+
+query dividendFundToDirectorByManagerQry {
+  description: "Select all dividend funds by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByManager
+      WHERE ( manager == _$manager )
+}
+
+query dividendFundToDirectorByAllManagerQry {
+  description: "Select all dividend funds by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByManager
+}
+
+query revenueFundsByCustomerQry {
+ description: "Select all revenue by customer"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByCustomer
+       WHERE ( customer == _$customer )
+}
+query revenueFundsByAllCustomerQry {
+ description: "Select all revenue by customer"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByCustomer
+}  
+query outsourceFundToVendorQry {
+ description: "Select all vendor outsource funds by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByManager
+      WHERE ( receiver == _$vendor )
+}
+
+query outsourceFundToAllVendorQry {
+ description: "Select all vendor outsource funds by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByManager 
+}
+
+query fundToConsultantQry {
+description: "Select all consultant funds by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByManager
+      WHERE ( receiver == _$consultant )
+}
+
+query fundToAllConsultantQry {
+description: "Select all consultant funds by manager"
+  statement:
+      SELECT org.altiux.hrms.PaymentTransferByManager
+}
